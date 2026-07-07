@@ -4,7 +4,7 @@ Target: localhost / 127.0.0.1 (single machine, no setup required)
 
 Description
 An upgrade to port_checker.py: instead of checking one port at a time, this scans a whole range of ports concurrently using a small thread pool,
-and looks up the well-known service name for each open port (e.g. 80 -> http) using socket.getservbyport.
+and looks up the well-known service name for each open port (e.g. 80 -> http) using socket.getservbyport. Thread pool just contains a number of threads that are available to take on a subprocess.
 The same idea nmap uses for its "service" column, just simpler.
 
 Instructions
@@ -22,7 +22,7 @@ import queue
 import time
 
 TARGET_HOST = "127.0.0.1"
-PORT_RANGE = range(1, 1025)   # scan well-known ports 1-1024
+PORT_RANGE = range(1, 8082)   # scan well-known ports 1-1024, change if u need other ports
 THREAD_COUNT = 100
 TIMEOUT_SECONDS = 0.5
 
